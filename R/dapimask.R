@@ -1,16 +1,20 @@
 #' Mask DAPI in kernel
 #'
 #' @param img DAPI channel image (3d)
-#' @param mic vector of dimensions of img in microns
+#' @param size size of img in microns 
+#' @param voxelsize size of voxel in microns
 #' @param thresh threshold for intensity. Can be "auto": function will try to find automatic threshold
 #' @param cores number of cores available for parallel computing
-#' @return mask image, same dimension as img.
+#' @param silent Keep silent?
+#' 
+#' @return mask image, array with same dimension as img.
 #' @export
 #'
 #' @import EBImage bioimagetools stats
 #' 
-dapimask<-function(img,mic,thresh="auto", cores=1)
+dapimask<-function(img, size=NULL, voxelsize=NULL, thresh="auto", silent=TRUE, cores=1)
 {
+  if (is.null(size)&is.null(voxelsize)){stop("Either size or voxelsize is required")}
   if (length(dim(img))==3)
      {
     mb<-apply(img,3,mean)
@@ -30,10 +34,10 @@ dapimask<-function(img,mic,thresh="auto", cores=1)
   blau[blau<0]<-0
   blau<-array(blau,dims)
   blau<-blau/max(blau)
-  blau<-bioimagetools::filterImage3d(blau,"var",4,1/3,silent=TRUE)
+  blau<-bioimagetools::filterImage3d(blau,"var",4,1/3,silent=silent)
   
-  xyzmic<-mic/dim(img)
-  xymic<-mean(xyzmic[1:2])
+  if(is.null(voxelsize))voxelsize<-size/dim(img)
+  xymic<-mean(voxelsize[1:2])
   
   brush<-EBImage::makeBrush(25,shape="gaussian",sigma=.1/xymic)
   blau2<-EBImage::filter2(blau,brush)
@@ -76,6 +80,7 @@ dapimask<-function(img,mic,thresh="auto", cores=1)
   mask<-ifelse(mask0==which,1,0)
   
   mask<-EBImage::fillHull(mask)
+  
   return(mask)
 }
 

@@ -3,11 +3,12 @@
 #' @param file file name
 #' @param channels e.g. c("red","green","blue")
 #' @param rgb.folder folder with file
+#' @param normalize boolean. Should we try to do some normalization?
 #'
 #' @return files in "./red/", "./green", "./blue" and "./XYZmic"
 #' @export
 #' @import bioimagetools
-splitchannels.file<-function(file, channels, rgb.folder)
+splitchannels.file<-function(file, channels, rgb.folder, normalize=FALSE)
 {
 test<-try({
 img<-readTIF(paste(rgb.folder,file,sep="/"))
@@ -37,32 +38,39 @@ if (D==3)
 
 if(length(rr)>0)
 {
-red<-red-find.mode(red)
-red[red<0]<-0
-red<-red-min(red)
-red<-red/max(red)
+if(normalize)
+  {
+  red<-red-find.mode(red)
+  red[red<0]<-0
+  red<-red-min(red)
+  red<-red/max(red)
+}
 writeTIF(red,paste("red/",file,sep=""),bps=16L)
 }
 
 if(length(gg)>0)
 {
+  if(normalize){
 green<-green-find.mode(green)
 green[green<0]<-0
 green<-green-min(green)
 green<-green/max(green)
+}
 writeTIF(green,paste("green/",file,sep=""),bps=16L)
 }
 
 
 if(length(bb)>0)
 {
-bluecut<-blue-find.mode(blue)
+if (normalize){
+  bluecut<-blue-find.mode(blue)
 bluecut[bluecut<0]<-0
 bluecut<-bluecut-min(bluecut)
 #blue<-blue-min(blue)
 #blue<-blue/max(blue)
-bluecut<-bluecut/max(bluecut)
-writeTIF(bluecut,paste("blue/",file,sep=""),bps=16L)
+blue<-bluecut/max(bluecut)
+}
+writeTIF(blue,paste("blue/",file,sep=""),bps=16L)
 }
 
 
@@ -113,8 +121,16 @@ splitchannels.folder<-function(path,channels=c("red","green","blue"),rgb.folder=
   setwd(orig)
 }
 
-find.mode<-function(x)
-{
-  d<-density(x)
-  return(d$x[which(d$y==max(d$y))[1]])
-}
+#' Split RGB images into channels and pixel size information
+#'
+#' These functions are provided for compatibility with older version of
+#' the yourPackageName package.  They may eventually be completely
+#' removed.
+#' @param ... parameters for splitchannels.folder
+#' @return Nothing, folders red, green, blue and XYZmic include seperate channels and pixel size information
+#' @export
+#' 
+splitchannels<-function(...){
+ .Deprecated("splitchannels.folder",package="nucim")
+ splitchannels.folder(...)
+ }

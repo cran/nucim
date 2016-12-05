@@ -2,9 +2,9 @@
 % Please edit documentation in R/dapimask_folder.R
 \name{dapimask.folder}
 \alias{dapimask.folder}
-\title{automatic DAPI mask segmentation for folder}
+\title{Automatic DAPI mask segmentation for folder}
 \usage{
-dapimask.folder(path, folder = "blue", pixelsize = NULL, size = NULL,
+dapimask.folder(path, folder = "blue", voxelsize = NULL, size = NULL,
   cores = 1)
 }
 \arguments{
@@ -12,16 +12,16 @@ dapimask.folder(path, folder = "blue", pixelsize = NULL, size = NULL,
 
 \item{folder}{folder with DAPI images}
 
-\item{pixelsize}{real pixelsize of image (in nanometers), if NULL (default), look in folder XYZmic}
+\item{voxelsize}{real size of voxel (in microns), if NULL (default), look in folder XYZmic}
 
 \item{size}{real size of image (in microns), if NULL (default), look in folder XYZmic}
 
-\item{cores}{number of cores to use in parallel (need paralle package)}
+\item{cores}{number of cores to use in parallel (need parallel package)}
 }
 \value{
 nothing, results are in folder dapimask
 }
 \description{
-automatic DAPI mask segmentation for folder
+Automatic DAPI mask segmentation for folder
 }
 
