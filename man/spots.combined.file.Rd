@@ -4,10 +4,10 @@
 \alias{spots.combined.file}
 \title{Find spots using information from two channels}
 \usage{
-spots.combined.file(file, size = NULL, voxelsize = NULL, folder = "./",
-  thresh.offset = 0.1, min.sum.intensity = 2, max.distance = 0.5,
-  use.brightest = FALSE, max.spots = 2, full.voxel = FALSE,
-  output = "markers")
+spots.combined.file(file, size = NULL, voxelsize = NULL,
+  folder = "./", thresh.offset = 0.1, min.sum.intensity = 2,
+  max.distance = 0.5, use.brightest = FALSE, max.spots = 2,
+  full.voxel = FALSE, output = "markers")
 }
 \arguments{
 \item{file}{File name}
@@ -18,7 +18,7 @@ spots.combined.file(file, size = NULL, voxelsize = NULL, folder = "./",
 
 \item{folder}{Folder}
 
-\item{thresh.offset}{Thresh offest used in EBImage::thresh()}
+\item{thresh.offset}{Thresh offset used in EBImage::thresh()}
 
 \item{min.sum.intensity}{spots smaller than min.sum.intensity are ignored}
 
@@ -38,4 +38,3 @@ RGB image with spots will be written to output folder
 \description{
 Find spots using information from two channels
 }
-

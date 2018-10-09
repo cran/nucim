@@ -12,9 +12,8 @@
 
 <meta name="author" content="Volker Schmid" />
 
-<meta name="date" content="2018-10-09" />
 
-<title>Chromatin compaction classification using DAPI intensity</title>
+<title>Publications using nucim</title>
 
 
 
@@ -30,63 +29,27 @@
 
 
 
-<h1 class="title toc-ignore">Chromatin compaction classification using DAPI intensity</h1>
+<h1 class="title toc-ignore">Publications using nucim</h1>
 <h4 class="author"><em>Volker Schmid</em></h4>
-<h4 class="date"><em>2018-10-09</em></h4>
+<h4 class="date"><em>4th January 2017</em></h4>
 
 
 
-<div id="preparation" class="section level2">
-<h2>Preparation</h2>
-<pre><code>setRepositories(ind=c(1,2))
-install.packages(&quot;nucim&quot;)</code></pre>
+<div id="description-and-instructions" class="section level3">
+<h3>Description and instructions</h3>
+<ul>
+<li>Volker J. Schmid, Marion Cremer, Thomas Cremer: Quantitative analyses of the 3D nuclear landscape recorded with super-resolved fluorescence microscopy. Methods 123 (2017) 33-46. <a href="https://dx.doi.org/10.1016/j.ymeth.2017.03.013">[DOI]</a></li>
+</ul>
 </div>
-<div id="code-to-classify-one-rgb-image" class="section level2">
-<h2>code to classify one rgb image</h2>
-<pre><code>library(bioimagetools)
-library(nucim)</code></pre>
-<p>choose RGB file</p>
-<pre><code>img = readTIF(file.choose())</code></pre>
-<p>number of slices</p>
-<pre><code>slices = dim(img)[4]</code></pre>
-<p>we need the dimensions of the image in microns</p>
-<pre><code>x = attributes(img)$x.resolution
-y = attributes(img)$y.resolution
-z = as.numeric(attributes(img)$spacing) * slices</code></pre>
-<p>and the dimensions of each voxel</p>
-<pre><code>X = x/dim(img)[1]
-Y = y/dim(img)[2]
-Z = as.numeric(attributes(img)$spacing)
-zscale=mean(c(X,Y))/Z</code></pre>
-<p>we assume that the third channel is blue, ie, DAPI</p>
-<pre><code>blue = img[,,3,] </code></pre>
-<p>we mask the kernel</p>
-<pre><code>mask = dapimask(blue, c(x,y,z), thresh=&quot;auto&quot;)</code></pre>
-<p>classify the DAPI channel</p>
-<pre><code>classes = classify(blue, mask, 7, z=zscale)</code></pre>
-<p>count voxel per class</p>
-<pre><code>counts &lt;- table.n(classes, 7)</code></pre>
-<p>percentages</p>
-<pre><code>perc &lt;- print(counts/sum(counts)*100, 1)
-barplot(perc, names.arg=1:7, xlab=&quot;DAPI intensity class&quot;, ylab=&quot;percentage&quot;)</code></pre>
-</div>
-<div id="code-to-classify-a-folder-full-of-rgb-images" class="section level2">
-<h2>code to classify a folder full of rgb images</h2>
-<pre><code>library(bioimagetools)
-library(nucim)</code></pre>
-<p>choose one of the files in a folder of RGB files</p>
-<pre><code>folder = file.choose()
-f = unlist(gregexpr(&quot;/&quot;,folder))
-folder = substr(folder,1,f[length(f)])</code></pre>
-<p>scripts can use parallel computing, if available (not under windows)</p>
-<pre><code>nr.cores=ifelse(.Platform$OS.type==&quot;windows&quot;, 1, 4)</code></pre>
-<p>split channels</p>
-<pre><code>splitchannels.folder(folder, rgb.folder=&quot;./&quot;, cores=nr.cores)</code></pre>
-<p>masks</p>
-<pre><code>dapimask.folder(folder, cores=nr.cores)</code></pre>
-<p>classification</p>
-<pre><code>classify.folder(folder, 7, cores=nr.cores)</code></pre>
-<p>results will be in folders “class7” und “class7-n”</p>
+<div id="publications-using-nucim-including-pre-releases" class="section level3">
+<h3>Publications using nucim (including pre-releases)</h3>
+<ul>
+<li>Cremer, M., Schmid, V.J., Kraus, F., Markaki, Y., Hellmann, I., Maiser, A., Leonhardt, H., John, S., Stamatoyannopoulos, J. and Cremer, T.: Initial high-resolution microscopic mapping of active and inactive regulatory sequences proves non-random 3D arrangements in chromatin domain clusters. Epigenetics &amp; Chromatin 10:39 (2017). <a href="https://doi.org/10.1186/s13072-017-0146-0">[DOI]</a></li>
+<li>Popken J., Schmid V.J., Strauss, A., Guengoer, T., Wolf, E., Zakhartchenko, T.: Stage-dependent remodeling of the nuclear envelope and lamina during rabbit early embryonic development. Journal of Reproduction and Development 62:2 (2016) 127–135. <a href="https://doi.org/10.1262/jrd.2015-100">[DOI]</a></li>
+<li>Popken J., Graf A., Krebs S., Blum H., Schmid V.J., Strauss, A., Guengoer, T., Zakhartchenko, T., Wolf, E., Cremer, T.: Remodeling of the Nuclear Envelope and Lamina during Bovine Preimplantation Development and Its Functional Implications. PLoS One 10:5 (2015) e0124619. <a href="https://doi.org/10.1371/journal.pone.0124619">[DOI]</a></li>
+<li>Popken, J., Brero, A., Koehler, D., Schmid, V.J., Strauss, A., Wuensch, A., Guengoer, T., Graf, A., Krebs, S., Blum, H., Zakhartchenko, V., Wolf, E., Cremer, T.: Reprogramming of ﬁbroblast nuclei in cloned bovine embryos is paralleled by major structural remodeling with both striking similarities and differences to nuclear phenotypes of embryos fertilized in vitro. Nucleus 5:6 (2014) 555–589. <a href="https://doi.org/10.4161/19491034.2014.979712">[DOI]</a></li>
+<li>Smeets, D., Markaki, Y., Schmid, V.J., Kraus, F., Tattermusch, A., Cerase, A., Sterr, M., Fiedler, S., Demmerle, J., Popken, J., Leonhardt, H., Brockdorff, N., Cremer, T., Schermelleh, L., Cremer, M.: Three-dimensional super-resolution microscopy of the inactive X chromosome territory reveals a collapse of its active nuclear compartment harboring distinct Xist RNA foci. Epigenetics &amp; Chromatin 7:8 (2014). <a href="https://doi.org/10.1186/1756-8935-7-8">[DOI]</a></li>
+</ul>
 </div>
 
 

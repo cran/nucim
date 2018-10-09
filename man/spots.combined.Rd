@@ -19,7 +19,7 @@ spots.combined(red, green, mask, size = NULL, voxelsize = NULL,
 
 \item{voxelsize}{size of voxel in microns}
 
-\item{thresh.offset}{Thresh offest used in EBImage::thresh()}
+\item{thresh.offset}{Thresh offset used in EBImage::thresh()}
 
 \item{min.sum.intensity}{spots smaller than min.sum.intensity are ignored}
 
@@ -37,4 +37,3 @@ RGB image with spots will be written to output folder
 \description{
 Find spots using information from two channels
 }
-

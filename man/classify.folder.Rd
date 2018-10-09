@@ -4,7 +4,8 @@
 \alias{classify.folder}
 \title{Classify DAPI}
 \usage{
-classify.folder(f, N, beta = 0.1, output = paste0("class", N), cores = 1)
+classify.folder(f, N, beta = 0.1, output = paste0("class", N),
+  cores = 1)
 }
 \arguments{
 \item{f}{folder}
@@ -23,4 +24,3 @@ results in "output" and "output"-n
 \description{
 Classify DAPI
 }
-

@@ -4,8 +4,8 @@
 \alias{find.spots.folder}
 \title{Detects spots}
 \usage{
-find.spots.folder(f, color, thresh = 1, thresh.auto = TRUE, filter = NULL,
-  cores = 1)
+find.spots.folder(f, color, thresh = 1, thresh.auto = TRUE,
+  filter = NULL, cores = 1)
 }
 \arguments{
 \item{f}{path to folder}
@@ -26,4 +26,3 @@ spot images in spot-color/, number of spots as txt files in spot-color/
 \description{
 Detects spots
 }
-
