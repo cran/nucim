@@ -4,11 +4,25 @@
 \alias{colors.in.classes}
 \title{Compute colors in classes distribution}
 \usage{
-colors.in.classes(classes, color1, color2 = NULL, mask = array(TRUE,
-  dim(classes)), N = max(classes, na.rm = TRUE), type = "tresh",
-  thresh1 = NULL, thresh2 = NULL, sd1 = 2, sd2 = 2,
-  col1 = "green", col2 = "red", test = FALSE, plot = TRUE,
-  beside = TRUE, ylim = NULL, ...)
+colors.in.classes(
+  classes,
+  color1,
+  color2 = NULL,
+  mask = array(TRUE, dim(classes)),
+  N = max(classes, na.rm = TRUE),
+  type = "tresh",
+  thresh1 = NULL,
+  thresh2 = NULL,
+  sd1 = 2,
+  sd2 = 2,
+  col1 = "green",
+  col2 = "red",
+  test = FALSE,
+  plot = TRUE,
+  beside = TRUE,
+  ylim = NULL,
+  ...
+)
 }
 \arguments{
 \item{classes}{Image of classes}
@@ -55,5 +69,5 @@ Compute colors in classes distribution
 Type of spot definitions:
 "thresh" or "t": Threshold based (threshold can be given by thresh1/2 or automatically derived)
 "voxel" or "v": Spots are given as binary voxel mask
-"intensity" or "i": Voxels are weighted with voxel intensity
+"intensity" or "i": Voxels are weighted with voxel intensity. Intensity is scaled to [0,1] after subtracting thresh1/2 (or automatic threshold)
 }

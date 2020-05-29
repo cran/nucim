@@ -4,9 +4,20 @@
 \alias{spots.combined}
 \title{Find spots using information from two channels}
 \usage{
-spots.combined(red, green, mask, size = NULL, voxelsize = NULL,
-  thresh.offset = 0.1, min.sum.intensity = 2, max.distance = 0.5,
-  use.brightest = FALSE, max.spots = NA, full.voxel = FALSE)
+spots.combined(
+  red,
+  green,
+  mask,
+  size = NULL,
+  voxelsize = NULL,
+  thresh.offset = 0.1,
+  window = c(5, 5),
+  min.sum.intensity = 2,
+  max.distance = 0.5,
+  use.brightest = FALSE,
+  max.spots = NA,
+  full.voxel = FALSE
+)
 }
 \arguments{
 \item{red}{image}
@@ -20,6 +31,8 @@ spots.combined(red, green, mask, size = NULL, voxelsize = NULL,
 \item{voxelsize}{size of voxel in microns}
 
 \item{thresh.offset}{Thresh offset used in EBImage::thresh()}
+
+\item{window}{Half width and height of the moving rectangular window.}
 
 \item{min.sum.intensity}{spots smaller than min.sum.intensity are ignored}
 

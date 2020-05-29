@@ -4,12 +4,14 @@ nucim (Nucleome Imaging Toolbox) is an R package for quantitative analyses of th
 
 ## Installation 
 
-The stable version is available on [CRAN](https://cran.r-project.org/):
+The stable version is available on [CRAN](https://CRAN.R-project.org/package=nucim):
 
     setRepositories(ind=c(1,2))
     install.packages(c("nucim"))
 
-The developement version is available on [github](https://github.com/bioimaginggroup). The developement version probably depends on the developement version of bioimagetools:
+Installation will take about 5 to 10 seconds. Tested platforms can be found [here](https://cran.r-project.org/web/checks/check_results_nucim.html).
+
+The development version is available on [github](https://github.com/bioimaginggroup). The development version probably depends on the development version of bioimagetools:
 
     setRepositories(ind=c(1,2))
     install.packages(c("devtools","tiff","EBImage"))
@@ -35,5 +37,3 @@ This package is developed at the BioImaging group at the Department of Statistic
 * Main development and implementation: Volker J Schmid
 * Developement of workflow: Marion and Thomas Cremer
 * Input on specific parts: Barbara Hübner, Yolanda Markaki, Jens Popken, Lothar Schermelleh, Daniel Smeets
-
-![](http://vs.lupus.uberspace.de/count/nucim.php)
