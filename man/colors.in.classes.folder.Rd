@@ -16,7 +16,8 @@ colors.in.classes.folder(
   sd2 = 2,
   col1 = "green",
   col2 = "red",
-  cores = 1
+  cores = 1,
+  verbose = FALSE
 )
 }
 \arguments{
@@ -43,6 +44,8 @@ colors.in.classes.folder(
 \item{col2}{Name of color 2}
 
 \item{cores}{Number of cores used in parallel, cores=1 implies no parallelization}
+
+\item{verbose}{verbose mode}
 }
 \value{
 Results are in folder colorsinclasses
